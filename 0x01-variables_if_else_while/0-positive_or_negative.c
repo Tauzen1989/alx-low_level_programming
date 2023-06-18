@@ -3,8 +3,8 @@
 #include <stdio.h>
 /**
  * main - Entry point
- * discription: positive anything is better than negative nothing
- * return: always 0
+ * Discription: 'Check if the number is positive or negative'
+ * Return: always 0 (success)
  */
 int main(void)
 {
