@@ -1,9 +1,10 @@
 #include "main.h"
+
 /**
- * main - Entry point 
- * discription: 'A progam that prints _putchar'
- * return: always 0
+ * main - 'print the word _putchar'
+ * return - always 0 (success)
  */
+
 int main(void)
 {
 	_putchar('_');
@@ -15,6 +16,6 @@ int main(void)
 	_putchar('a');
 	_putchar('r');
 	_putchar('\n');
-	
+
 	return (0);
 }
