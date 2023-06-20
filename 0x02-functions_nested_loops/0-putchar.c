@@ -1,8 +1,8 @@
 #include "main.h"
 
 /**
- * main - 'print the word _putchar'
- * return - always 0 (success)
+ * main - print a string of characters
+ * return: always 0 (success)
  */
 
 int main(void)
