@@ -5,7 +5,7 @@
  * and then adds a terminating null byte
  * @dest: destination string
  * @src: source string
- * Returns: a pointer to the resulting string dest
+ * Return: a pointer to the resulting string dest
  */
 
 char *_strcat(char *dest, char *src)
@@ -27,5 +27,5 @@ char *_strcat(char *dest, char *src)
 
 		dest[k] = '\0';
 
-	 return (dest);
+	return (dest);
 }
