@@ -4,7 +4,7 @@
  * _strncpy - a function that copies a string
  * @dest: string to copy from
  * @src: string to copy to.
- * @n: index value
+ * @n: input value
  * Return: function should work exactly like strncpy
  */
 
@@ -23,5 +23,7 @@ char *_strncpy(char *dest, char *src, int n)
 	dest[k] = '\0';
 		k++;
 	}
+
+	return (dest);
 
 }
