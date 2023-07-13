@@ -12,6 +12,7 @@ unsigned int strln(char *s)
 
 	while (s[i] != '\0')
 		i++;
+
 	return (i);
 }
 
