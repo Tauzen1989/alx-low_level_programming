@@ -4,28 +4,28 @@
 
 /**
  * add_node_end - add node to the end of the list.
- * @head: pointer to the address of the head.
- * @str: the str member for the new node.
+ * @head: pointer to the address of the first node
+ * @str: the string member for the new node.
  *
- * Return: Address of the newly added element.
+ * Return: address of the newly added element.
  */
 list_t *add_node_end(list_t **head, const char *str)
 {
-	list_t *item;
+	list_t *new_node;
 	int len;
 	list_t *temp;
 
-	item = malloc(sizeof(list_t));
-	if (item == NULL)
+	new_node = malloc(sizeof(list_t));
+	if (new_node == NULL)
 		return (NULL);
 	len = 0;
 	while (str[len])
 		len++;
-	item->str = strdup(str);
-	item->len = len;
+	new_node->str = strdup(str);
+	new_node->len = len;
 	if (*head == NULL)
 	{
-		*head = item;
+		*head = new_node;
 	}
 	else
 	{
@@ -34,11 +34,11 @@ list_t *add_node_end(list_t **head, const char *str)
 		{
 			if (temp->next == NULL)
 			{
-				temp->next = item;
+				temp->next = new_node;
 				break;
 			}
 			temp = temp->next;
 		}
 	}
-	return (item);
+	return (new_node;
 }
