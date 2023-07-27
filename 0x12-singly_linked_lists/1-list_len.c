@@ -8,7 +8,7 @@
  */
 size_t list_len(const list_t *h)
 {
-	unsigned int count;
+	size_t count;
 
 	if (h == NULL)
 		return (0);
