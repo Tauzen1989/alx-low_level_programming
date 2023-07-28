@@ -12,6 +12,7 @@ size_t print_list(const list_t *h)
 {
 	unsigned int count;
 	const list_t *tmp;
+
 	tmp = h;
 
 	count = 0;
@@ -21,7 +22,7 @@ size_t print_list(const list_t *h)
 			printf("[0](nil)\n");
 		else
 		{
-			printf("[%u] %s\n", h->len, h->str);
+			printf("[%u] %s\n", tmp->len, tmp->str);
 		}
 		count++;
 		tmp = tmp->next;
