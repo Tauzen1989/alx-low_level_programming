@@ -21,6 +21,6 @@ size_t print_listint(const listint_t *h)
 		tmp = tmp->next;
 		count++;
 	}
-	
+
 	return (count);
 }
