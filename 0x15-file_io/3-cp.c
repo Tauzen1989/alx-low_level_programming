@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <errno.h>
 #include <string.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <stdio.h>
 
 #define BUF_SIZE 1024
 
@@ -17,7 +20,7 @@ void print_error_and_exit(int code, const char *message);
 int main(int argc, char *argv[])
 {
 
-	int fd_to, fd_to;
+	int fd_from, fd_to;
 	const char *file_from = argv[1];
 	const char *file_to = argv[2];
 	char buffer[BUF_SIZE];
