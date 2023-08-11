@@ -6,9 +6,18 @@
 #include <unistd.h>
 #include <stdio.h>
 
-#define BUF_SIZE 1024
-
-void print_error_and_exit(int code, const char *message);
+/**
+ * print_error_and_exit - prints error message and code
+ * @code: exit code
+ * @message: message to be displayed
+ *
+ * Return: nothing
+ */
+void print_error_and_exit(int code, const char *message)
+{
+	dprintf(STDERR_FILENO, "Error: %s\n", message);
+	exit(code);
+}
 
 /**
  * main - copies the content of a file to another file.
@@ -23,7 +32,7 @@ int main(int argc, char *argv[])
 	int fd_from, fd_to;
 	const char *file_from = argv[1];
 	const char *file_to = argv[2];
-	char buffer[BUF_SIZE];
+	char buffer[1024];
 	ssize_t bytes_read, bytes_written;
 
 	if (argc != 3)
@@ -58,17 +67,4 @@ int main(int argc, char *argv[])
 	}
 
 	return (0);
-}
-
-/**
- * print_error_and_exit - prints error message and code
- * @code: exit code
- * @message: message to be displayed
- *
- * Return: nothing
- */
-void print_error_and_exit(int code, const char *message)
-{
-	dprintf(STDERR_FILENO, "Error: %s\n", message);
-	exit(code);
 }
