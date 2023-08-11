@@ -1,76 +1,63 @@
 #include "main.h"
 #include <stdlib.h>
 #include <errno.h>
+#include <string.h>
+
+#define BUF_SIZE 1024
+
+void print_error_and_exit(int code, const char *message);
 
 /**
  * main - copies the content of a file to another file.
- * @argc:
- * @argv:
+ * @argc: argument count
+ * @argv: argument vector
  *
- * Return:
+ * Return: 0
  */
 int main(int argc, char *argv[]) 
 {
-	
-	int fd_from, fd_to;
-	const char *file_from = argv[1];
-	const char *file_to = argv[2];
+	int fd_to, fd_to;
+	const char *file_from = argv[1], *file_to = argv[2];
+	char buffer[BUF_SIZE];
+	ssize_t bytes_read, bytes_written;	
 	
 	if (argc != 3)
-	{
-	dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n", "");
-		exit(97);
-	}	
+	print_error_and_exit(97, "Usage: cp file_from file_to");
+	
 	fd_from = open(file_from, O_RDONLY);
-	if (fd_from == -1)
-	{
-	dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
-		exit(98);
-	}
+	
+	if (fd_from == -1) 
+	print_error_and_exit(98, strerror(errno));
+	
 	fd_to = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	
 	if (fd_to == -1)
-	{
-		close(fd_from);
-        dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
-		exit(99);
-	}
-	char buffer[1024];
-	ssize_t bytes_read, bytes_written;
-
-	while ((bytes_read = read(fd_from, buffer, sizeof(buffer))) > 0)
+	print_error_and_exit(99, strerror(errno));
+	
+	while ((bytes_read = read(fd_from, buffer, BUF_SIZE)) > 0) 
 	{
 		bytes_written = write(fd_to, buffer, bytes_read);
 		if (bytes_written == -1)
-		{
-			close(fd_from);
-			close(fd_to);
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
-			exit(99);
-        	}
+			print_error_and_exit(99, strerror(errno));
 	}
 	if (bytes_read == -1)
-	{
-		close(fd_from);
-		close(fd_to);
-	dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
-		exit(98);
-	}
-	if (close(fd_from) == -1)
-	{
-	dprintf(100, "Error: Can't close fd %d\n", fd_from);
-		exit(100);
-	}
-	if (close(fd_to) == -1)
-	{
-        dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_to);
-		exit(100);
-	}
-
-	return 0;
+		print_error_and_exit(98, strerror(errno));
+	if (close(fd_from) == -1 || close(fd_to) == -1)
+		print_error_and_exit(100, strerror(errno));
+	
+	return (0);
 }
 
-void exit(int code, const char *message, const char *arg)
+/**
+ * print_error_and_exit - 
+ * @code:
+ * @message:
+ *
+ * Return: nothing
+ */
+void print_error_and_exit(int code, const char *message) 
 {
-    dprintf(STDERR_FILENO, message, arg);
+    dprintf(STDERR_FILENO, "Error: %s\n", message);
     exit(code);
 }
+
