@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 /**
- * read_textfile - a function that reads a text file and 
+ * read_textfile - a function that reads a text file and
  * prints it to the POSIX standard output.
  * @filename: pointer to the input file
  * @letters: the number of letters that should be read and printed
@@ -18,29 +18,29 @@ ssize_t read_textfile(const char *filename, size_t letters)
 
 	f_d = open(filename, O_RDONLY);
 	if (f_d == -1)
-		return -1;
+		return (-1);
 	buf = (char *)malloc(letters);
 	if (buf == NULL)
 	{
 		close(f_d);
-		return -1;
+		return (-1);
 	}
 	bytes_r = read(f_d, buf, letters);
 	if (bytes_r < 0)
 	{
 		free(buf);
 		close(f_d);
-		return -1;
+		return (-1);
 	}
 	bytes_w = write(STDOUT_FILENO, buf, bytes_r);
 	if (bytes_w < 0)
 	{
-        	free(buf);
-        	close(f_d);
-		return -1;
+		free(buf);
+		close(f_d);
+		return (-1);
 	}
 
 	free(buf);
 	close(f_d);
-    return (bytes_w);
+	return (bytes_w);
 }
