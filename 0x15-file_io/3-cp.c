@@ -6,18 +6,6 @@
 #include <unistd.h>
 #include <stdio.h>
 
-/**
- * print_error_and_exit - prints error message and code
- * @code: exit code
- * @message: message to be displayed
- *
- * Return: nothing
- */
-void print_error_and_exit(int code, const char *message)
-{
-	dprintf(STDERR_FILENO, "Error: %s\n", message);
-	exit(code);
-}
 
 /**
  * main - copies the content of a file to another file.
@@ -67,4 +55,17 @@ int main(int argc, char *argv[])
 	}
 
 	return (0);
+}
+
+/**
+ * print_error_and_exit - prints error message and code
+ * @code: exit code
+ * @message: message to be displayed
+ *
+ * Return: nothing
+ */
+void print_error_and_exit(int code, const char *message)
+{
+	dprintf(STDERR_FILENO, "Error: %s\n", message);
+	exit(code);
 }
