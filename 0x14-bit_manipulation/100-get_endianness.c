@@ -8,13 +8,13 @@
 int get_endianness(void)
 {
 	int num = 0x01020304;
-
 	unsigned char *c = (unsigned char *) &num;
+
 	if (*c == 0x01)
 	{
 		return (0);
 	}
-	else 
+	else
 	{
 		return (1);
 	}
