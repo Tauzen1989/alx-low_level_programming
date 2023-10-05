@@ -43,12 +43,15 @@ int append_text_to_file(const char *filename, char *text_content)
  *
  * Return: The length of a string.
  */
-size_t _strlen(char *str)
+size_t _strlen(const char *str)
 {
 	size_t length = 0;
 
-	while (*str++)
+	while (*str != '\0')
+	{
 		length++;
+		str++;
+	}
 
 	return (length);
 }
